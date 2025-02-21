@@ -38,6 +38,8 @@ Experience the model in action:
 - **[Live Website](https://auvroislamgithub.io/wasteRecognizer/)**
 - **[Hugging Face Space](https://huggingface.co/spaces/Auvro/WasteRecognizer)**
 
+## 🖼️ Hugging Face Model Preview
+<img src="app/gradio.png" width="800" height="400">
 ## 📊 Model Performance
 The model demonstrates high accuracy in waste classification with:
 - **Real-time waste identification**
@@ -53,13 +55,33 @@ epoch	train_loss	valid_loss	error_rate	accuracy	time
 
 ```
 
+
+### 📝 Data Preparation
+- **Dataset Collection**: Waste images are gathered from multiple sources, ensuring diverse and well-distributed data.
+- **Preprocessing**: Images undergo resizing, normalization, and augmentation to enhance model generalization.
+- **Labeling**: Data is labeled into predefined categories.
+- **Splitting**: The dataset is divided into training, validation, and testing sets for model evaluation.
+
+### 🎮 Model Training
+- **Architecture**: The model is built using **Fastai** with a **ResNet34** backbone for transfer learning.
+- **Optimization**: Fine-tuned using techniques such as **learning rate finder** and **gradual unfreezing**.
+- **Training**: The model undergoes multiple epochs of training to minimize loss and improve accuracy.
+- **Evaluation Metrics**: Accuracy, loss, and confusion matrix are used to assess performance.
+
+### 🔍 Inference
+- **Model Deployment**: The trained model is deployed on **Gradio** and **Hugging Face** for easy accessibility.
+- **User Interaction**: Users upload waste images, and the model predicts the waste category and provides disposal guidance.
+- **Real-Time Testing**: The inference pipeline processes new images with minimal latency, making it efficient for practical applications.
+
+
 ## 🗒️ Project Structure
 ```
 WASTE-RECOGNIZER/
 ├── app/
 │   ├── test_images/         # Sample images for validation
 │   ├── app.py               # Main application file
-│   └── README.md            # Application documentation
+│   └── README.md
+|   └── gradio          # Application documentation
 │
 ├── data/
 │   ├── dataloaders/         # Utilities for data handling
