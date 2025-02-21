@@ -35,11 +35,11 @@
             <div class="flex items-center justify-center min-h-screen bg-[#FFE1FF]">
                 <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-md text-center">
                     <h1 class="text-2xl font-bold text-[#7E60BF]">Waste Recognizer</h1>
-                    <p class="text-[#7E60BF] text-sm mt-2">Upload an image to classify waste type</p>
+                    <p  id="paragraph" class="text-[#7E60BF] text-sm mt-2">Upload an image to classify waste type</p>
                     
                     <label class="mt-4 cursor-pointer block">
                         <input id="photo" type="file" class="hidden" accept="image/*">
-                        <div class="px-4 py-2 bg-[#E4B1F0] text-white rounded-lg hover:bg-[#D3A0E0] transition">Choose an Image</div>
+                        <div id="choose_image" class="px-4 py-2 bg-[#E4B1F0] text-white rounded-lg hover:bg-[#D3A0E0] transition">Choose an Image</div>
                     </label>
                     
                     <div id="results" class="mt-4">
@@ -568,6 +568,18 @@
                 button.textContent = "Try the Model";
             }
         }
+        function uploadImageAgain() {
+            document.getElementById('choose_image').classList.remove('hidden');
+            document.getElementById('paragraph').classList.remove('hidden');
+        document.getElementById('photo').value = ""; // Clear the file input
+        document.getElementById('results').innerHTML = `
+            <img id="placeholder" src="images/uploadImage.jpg" alt="Upload an image" class="w-64 h-64 object-cover rounded-lg shadow-md mx-auto">
+            <div id="loadingSpinner" class="hidden w-64 h-64 object-cover rounded-lg shadow-md mx-auto flex justify-center items-center">
+                <span class="loading loading-ring loading-lg"></span>
+            </div>
+            <p class="mt-2 text-lg font-semibold text-[#7E60BF]">Upload an image to see results</p>
+        `;
+    }
     
         document.getElementById("toggleButton").addEventListener("click", toggleContent);
     </script>
@@ -579,37 +591,40 @@
                 const imageBlob = await fetch(reader.result).then(res => res.blob());
                 document.getElementById('loadingSpinner').classList.remove('hidden');
                 document.getElementById('placeholder').classList.add('hidden');
+                document.getElementById('choose_image').classList.add('hidden');
+                document.getElementById('paragraph').classList.add('hidden');
 
     
                 try {
                     const response = await app.predict("/predict", { image: imageBlob });
                     const label = response['data'][0]['label'];
                     results.innerHTML = `
-                        <div class='mt-4'>
+                        <div id="image" class='mt-4'>
                             <img src="${reader.result}" class='w-64 h-64 object-cover rounded-lg shadow-md mx-auto'>
                             <p class='mt-2 text-lg font-semibold text-[#7E60BF]'>${label}</p>
                             <button onclick="${label.split(" ")[0].toLowerCase()+"Modal"}.showModal()" class="btn bg-white border-[#E4B1F0] border-2 text-[#E4B1F0] my-2">More Info</button>
+                            <button onclick="uploadImageAgain()" class="btn bg-white border-[#E4B1F0] border-2 text-[#E4B1F0] my-2">Reset</button>
+                </div>
                         
                         </div>
                     `;
-                    console.log(label.split(" ")[0].toLowerCase()+"Modal");
+                    
                 } catch (error) {
                     console.error("Error during prediction:", error);
                     results.innerHTML = "<p class='text-red-500 mt-2'>Something went wrong with the prediction.</p>";
                 }
-                finally{
-                    document.getElementById('loadingSpinner').classList.add('hidden');
-                document.getElementById('placeholder').classList.remove('hidden');
-                }
+                
             }
     
-            function read() {
-                const reader = new FileReader();
-                reader.addEventListener('load', () => loaded(reader));
-                reader.readAsDataURL(photo.files[0]);
-            }
     
-            document.getElementById('photo').addEventListener('input', read);
+
+    function read() {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => loaded(reader));
+        reader.readAsDataURL(photo.files[0]);
+    }
+
+    document.getElementById('photo').addEventListener('input', read);
         </script>
 </body>
 
