@@ -40,11 +40,13 @@ Experience the model in action:
 
 ## 🖼️ Hugging Face Model Preview
 <img src="app/gradio.png" width="800" height="400">
+
 ## 📊 Model Performance
 The model demonstrates high accuracy in waste classification with:
 - **Real-time waste identification**
 - **Appropriate bin recommendations**
 - **Proper disposal guidance**
+
 ### Final Model Accuracy:
 ```
 epoch	train_loss	valid_loss	error_rate	accuracy	time
@@ -52,27 +54,24 @@ epoch	train_loss	valid_loss	error_rate	accuracy	time
 
 epoch	train_loss	valid_loss	error_rate	accuracy	time
 0	0.491925	0.258303	0.073665	0.926335	03:01
-
 ```
 
-
-### 📝 Data Preparation
+## 📝 Data Preparation
 - **Dataset Collection**: Waste images are gathered from multiple sources, ensuring diverse and well-distributed data.
 - **Preprocessing**: Images undergo resizing, normalization, and augmentation to enhance model generalization.
 - **Labeling**: Data is labeled into predefined categories.
 - **Splitting**: The dataset is divided into training, validation, and testing sets for model evaluation.
 
-### 🎮 Model Training
+## 🎮 Model Training
 - **Architecture**: The model is built using **Fastai** with a **ResNet34** backbone for transfer learning.
 - **Optimization**: Fine-tuned using techniques such as **learning rate finder** and **gradual unfreezing**.
 - **Training**: The model undergoes multiple epochs of training to minimize loss and improve accuracy.
 - **Evaluation Metrics**: Accuracy, loss, and confusion matrix are used to assess performance.
 
-### 🔍 Inference
+## 🔍 Inference
 - **Model Deployment**: The trained model is deployed on **Gradio** and **Hugging Face** for easy accessibility.
 - **User Interaction**: Users upload waste images, and the model predicts the waste category and provides disposal guidance.
 - **Real-Time Testing**: The inference pipeline processes new images with minimal latency, making it efficient for practical applications.
-
 
 ## 🗒️ Project Structure
 ```
@@ -80,8 +79,8 @@ WASTE-RECOGNIZER/
 ├── app/
 │   ├── test_images/         # Sample images for validation
 │   ├── app.py               # Main application file
-│   └── README.md
-|   └── gradio          # Application documentation
+│   ├── gradio.png           # Application preview image
+│   └── README.md            # Application documentation
 │
 ├── data/
 │   ├── dataloaders/         # Utilities for data handling
@@ -129,7 +128,7 @@ python app.py
 cd notebook
 jupyter notebook
 ```
-Open and run `DataPrep,dataTraining,Inference.ipynb` to train the model.
+Open and run `DataPrep,dataTraining,Inference.ipynb` to train and test the model.
 
 ## 💡 Usage
 - Upload an image of waste material.
@@ -138,7 +137,7 @@ Open and run `DataPrep,dataTraining,Inference.ipynb` to train the model.
 
 ## 🔍 Testing
 - Use images from `test_images/` to validate model performance.
-- Run Inference part in `DataPrep,dataTraining,Inference.ipynb` for real-world evaluation.
+- Run inference using `DataPrep,dataTraining,Inference.ipynb` for real-world evaluation.
 
 ## 📚 License
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
@@ -150,5 +149,4 @@ We welcome contributions! Feel free to fork the repository and submit a pull req
 For inquiries or collaborations:
 - **GitHub**: [github.com/AuvroIslam](https://github.com/AuvroIslam)
 - **Email**: oitijya2002@gmail.com
-
 
