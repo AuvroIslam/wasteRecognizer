@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="icon" href="images/favi.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Waste Recognizer</title>
+</head>
+
+<body class="bg-[#FFE1FF]">
+    <header>
+        <nav>
+            <div class="navbar bg-base-200 rounded-lg flex-col md:flex-row">
+                <div class="flex-1">
+                    <a class="btn btn-ghost text-xl font-bold text-[#7E60BF]">Waste Recognizer Model</a>
+                </div>
+                <div class="flex-none">
+                    
+                       
+                        <button id="toggleButton" class="btn bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]">Try the Model</button>
+                       
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <!-- waste-model  -->
+        <div id="wasteRecognizer" class="hidden">
+            <div class="flex items-center justify-center min-h-screen bg-[#FFE1FF]">
+                <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-md text-center">
+                    <h1 class="text-2xl font-bold text-[#7E60BF]">Waste Recognizer</h1>
+                    <p class="text-[#7E60BF] text-sm mt-2">Upload an image to classify waste type</p>
+                    
+                    <label class="mt-4 cursor-pointer block">
+                        <input id="photo" type="file" class="hidden" accept="image/*">
+                        <div class="px-4 py-2 bg-[#E4B1F0] text-white rounded-lg hover:bg-[#D3A0E0] transition">Choose an Image</div>
+                    </label>
+                    
+                    <div id="results" class="mt-4">
+                        <img id="placeholder" src="images/uploadImage.jpg" alt="Upload an image" class="w-64 h-64 object-cover rounded-lg shadow-md mx-auto">
+                        <div id="loadingSpinner" class="hidden w-64 h-64 object-cover rounded-lg shadow-md mx-auto flex justify-center items-center">
+                            <span class="loading loading-ring loading-lg"></span>
+                        </div>
+                        <p class="mt-2 text-lg font-semibold text-[#7E60BF]">Upload an image to see results</p>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <div id="mainContent">
+        <!-- hero  -->
+         
+        <div class="w-full md:w-2/3 flex justify-center items-center mx-auto my-12">
+            <div class="hero bg-base-200 h-2/3 rounded-lg">
+                <div class="hero-content flex-col lg:flex-row">
+                    <img src="images/WasteModel.jpg" class="max-w-full md:max-w-sm rounded-lg shadow-2xl" />
+                    <div>
+                        <h1 class="text-3xl md:text-5xl font-bold text-[#7E60BF]">Waste Recognizer Model</h1>
+                        <p class="py-6">
+                            This waste recognition model can identify the type of waste and provide guidance on the
+                            appropriate disposal method or bin. The model enhances waste management efficiency by
+                            ensuring proper sorting and recycling. It contributes to environmental sustainability by
+                            reducing contamination in waste streams.
+                        </p>
+                        <button onclick="toggleContent()" class="btn bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]">Try the Model</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- plastic-1 -->
+            <div>
+                <div class="card card-compact bg-base-100 w-full md:w-72 shadow-xl">
+                    <figure>
+                        <img src="images/plastic.png" alt="Plastic waste" />
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title text-[#7E60BF]">Plastic Waste!</h2>
+                        <p class="text-center">Beverage bottles,food wrappers,straws,shopping bags and cigarette butts
+                            etc.</p>
+                        <div class="card-actions justify-end">
+
+                            <!-- Open the modal using ID.showModal() method -->
+                            <button class="btn bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]" onclick="
+                                plasticModal.showModal()">Details</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- metal-2 -->
+            <div>
+                <div class="card card-compact bg-base-100 w-full md:w-72 shadow-xl">
+                    <figure>
+                        <img src="images/metal.png" alt="Metal waste " />
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title text-[#7E60BF]">Metal Waste!</h2>
+                        <p class="text-center">Aluminium,copper,iron,tin,gold,lead,silver, titanium, uranium,zinc,bronze
+                            and steel etc.</p>
+                        <div class="card-actions justify-end">
+
+                            <!-- Open the modal using ID.showModal() method -->
+                            <button class="btn bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]"" onclick="
+                                metalModal.showModal()">Details</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Organic-3 -->
+            <div>
+                <div class="card card-compact bg-base-100 w-full md:w-72 shadow-xl">
+                    <figure>
+                        <img src="images/organic.jpg" alt="Organic waste" />
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title text-[#7E60BF]">Organic Waste!</h2>
+                        <p class="text-center">Biodegradable material such as Food waste,yard waste,human waste and
+                            manure etc</p>
+                        <div class="card-actions justify-end">
+
+                            <!-- Open the modal using ID.showModal() method -->
+                            <button class="btn bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]"" onclick="
+                                organicModal.showModal()">Details</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Glass-4-->
+            <div>
+                <div class="card card-compact bg-base-100 w-full md:w-72 shadow-xl">
+                    <figure>
+                        <img src="images/glass.png" alt="Glass waste" />
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title text-[#7E60BF]">Glass Waste!</h2>
+                        <p class="text-center">Broken glass,bottles,plates,planesglassware,jars and cosmetic containers
+                        </p>
+                        <div class="card-actions justify-end">
+
+                            <!-- Open the modal using ID.showModal() method -->
+                            <button class="btn bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]"" onclick="
+                                glassModal.showModal()">Details</button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Electronic-5 -->
+            <div>
+                <div class="card card-compact bg-base-100 w-full md:w-72 shadow-xl">
+                    <figure>
+                        <img src="images/electronic.png" alt="Electronic waste" />
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title text-[#7E60BF]">Electronic Waste!</h2>
+                        <p class="text-center">Computers,televisions,mobile phones,home appliances such as air
+                            conditioners,televisions etc</p>
+                        <div class="card-actions justify-end">
+
+                            <!-- Open the modal using ID.showModal() method -->
+                            <button class="btn bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]"" onclick="
+                                electronicModal.showModal()">Details</button>
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Textile-6 -->
+            <div>
+                <div class="card card-compact bg-base-100 w-full md:w-72 shadow-xl">
+                    <figure>
+                        <img src="images/textile.png" alt="Textile waste" />
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title text-[#7E60BF]">Textile Waste!</h2>
+                        <p class="text-center">Old and torn clothes,waste from spining yarn and weaving fabric,knitting
+                            and dyeing waste etc.</p>
+                        <div class="card-actions justify-end">
+
+                            <!-- Open the modal using ID.showModal() method -->
+                            <button class="btn bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]"" onclick="
+                                textileModal.showModal()">Details</button>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- medical-7 -->
+            <div>
+                <div class="card card-compact bg-base-100 w-full md:w-72 shadow-xl">
+                    <figure>
+                        <img src="images/medical.jpg" alt="Medical waste" />
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title text-[#7E60BF]">Medical Waste!</h2>
+                        <p class="text-center">Blood,infectious agents(socks),swabs and dresings,medicines,syringes and
+                            needles and surgical gloves etc.</p>
+                        <div class="card-actions justify-end">
+
+                            <!-- Open the modal using ID.showModal() method -->
+                            <button class="btn bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]"" onclick="
+                                medicalModal.showModal()">Details</button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- wood-8 -->
+            <div>
+                <div class="card card-compact bg-base-100 w-full md:w-72 shadow-xl">
+                    <figure>
+                        <img src="images/wood.png" alt="Wood waste" />
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title text-[#7E60BF]">Wood Waste!</h2>
+                        <p class="text-center">Construction wood,wooden pallets,furniture,sawdust,tree branches and tree
+                            stumps etc</p>
+                        <div class="card-actions justify-end">
+
+                            <!-- Open the modal using ID.showModal() method -->
+                            <button class="btn bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]"" onclick="
+                                woodModal.showModal()">Details</button>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Paper-9 -->
+            <div>
+                <div class="card card-compact bg-base-100 w-full md:w-72 shadow-xl">
+                    <figure>
+                        <img src="images/paper.jpg" alt="Paper waste" />
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title text-[#7E60BF]">Paper Waste!</h2>
+                        <p class="text-center">Newspapers,magazines,letters, envelopes,receipts,flyers,posters, Journals
+                            and Instruction manuals etc</p>
+                        <div class="card-actions justify-end">
+
+                            <!-- Open the modal using ID.showModal() method -->
+                            <button class="btn bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]"" onclick="
+                                paperModal.showModal()">Details</button>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Shoes-10 -->
+            <div>
+                <div class="card card-compact bg-base-100 w-full md:w-72 shadow-xl">
+                    <figure>
+                        <img src="images/shoes.png" alt="Shoes waste" />
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title text-[#7E60BF]">Shoes Waste!</h2>
+                        <p class="text-center">Shoe waste can include manufacturing scraps, defective shoes, packaging,
+                            and post-consumer waste</p>
+                        <div class="card-actions justify-end">
+
+                            <!-- Open the modal using ID.showModal() method -->
+                            <button class="btn bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]"" onclick="
+                                shoesModal.showModal()">Details</button>
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       <!-- Features -->
+<div class="w-full md:w-3/4 flex flex-col justify-center items-center mx-auto my-12">
+    <div class="hero bg-base-200 rounded-lg p-4">
+        <div class="hero-content flex-col lg:flex-row-reverse">
+            <img src="images/robot.png" class="w-full max-w-xs md:max-w-sm rounded-xl shadow-2xl" />
+            <div class="text-center lg:text-left">
+                <h1 class="text-3xl md:text-5xl font-bold text-[#7E60BF]">Features</h1>
+                <ul class="list-disc mx-4 md:mx-8 my-4 marker:text-[#433878]">
+                    <li><span class="font-semibold text-[#7E60BF]">Accurate Waste Identification:</span> Recognizes various types of waste materials with high precision.</li>
+                    <li><span class="font-semibold text-[#7E60BF]">Disposal Guidance:</span> Provides recommendations for the appropriate disposal method or bin for each type of waste.</li>
+                    <li><span class="font-semibold text-[#7E60BF]">Efficiency Enhancement:</span> Improves waste management processes by ensuring proper sorting and recycling.</li>
+                    <li><span class="font-semibold text-[#7E60BF]">Environmental Sustainability:</span> Reduces contamination in waste streams, promoting eco-friendly practices.</li>
+                    <li><span class="font-semibold text-[#7E60BF]">Versatile Application:</span> Can be deployed in diverse settings, such as smart waste management systems and public recycling initiatives.</li>
+                    <li><span class="font-semibold text-[#7E60BF]">User-Friendly Interface:</span> Designed for easy integration and use in existing waste management systems.</li>
+                </ul>
+                <div class="flex justify-center lg:justify-start items-center">
+                    <a href="https://huggingface.co/spaces/Auvro/WasteRecognizer">
+                    <button class="btn bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]">Try the Hugging Face Model</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<!-- setup -->
+<div class="w-full md:w-3/4 flex flex-col justify-center items-center mx-auto my-12">
+    <div class="hero bg-base-200 rounded-lg p-4">
+        <div class="hero-content flex-col lg:flex-row-reverse">
+            <div class="text-center lg:text-left">
+                <h1 class="text-3xl md:text-5xl font-bold text-[#7E60BF]">📝 Setup Instructions:</h1>
+                <ul class="list-disc mx-4 md:mx-8 my-4 marker:text-[#433878]">
+                    <li class="font-semibold ">Clone the repository, install dependencies, and run the model in Jupyter Notebooks or Google Colab for testing and further development.</li>
+                    <li class="font-semibold ">For more details, check out the <a class="link text-[#7E60BF]" href="https://github.com/AuvroIslam/Waste-Recognizer">full documentation.</a></li>
+                    
+                </ul>
+               
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+        </div>
+        <!-- modal dialogus -->
+        <div>
+        
+        <dialog id="plasticModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="text-xl font-bold text-[#7E60BF] underline underline-offset-8">Recycling
+                    bin</h3>
+                <div class="flex justify-center items-center my-4">
+                    <img src="images/blue_bin.jpg" class="w-1/2 rounded-lg shadow-2xl" />
+                </div>
+                <p class="p-4 text-white bg-[#E4B1F0] font-semibold rounded-lg">Plastic waste should
+                    generally go in the recycling bin (usually indicated by a blue bin).However,
+                    always check your local guidelines to confirm which plastics are accepted in
+                    your recycling program. </p>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                            class="btn  bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+        <dialog id="metalModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="text-xl font-bold text-[#7E60BF] underline underline-offset-8">Recycling
+                    bin</h3>
+                <div class="flex justify-center items-center my-4">
+                    <img src="images/blue_bin.jpg" class="w-1/2 rounded-lg shadow-2xl" />
+                </div>
+                <p class="p-4 text-white bg-[#E4B1F0] font-semibold rounded-lg">Before recycling
+                    clean and dry the metal items.Metal waste should go in the recycling bin; this
+                    is usually designated by a blue or yellow bin depending on your local recycling
+                    system.</p>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                            class="btn  bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+        <dialog id="organicModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="text-xl font-bold text-[#7E60BF] underline underline-offset-8">Green bin
+                    or Brown bin</h3>
+                <div class="flex justify-center items-center my-4">
+                    <img src="images/green_bin.png" class="w-1/2 rounded-lg shadow-2xl" />
+                </div>
+                <p class="p-4 text-white bg-[#E4B1F0] font-semibold rounded-lg">"If it grew, throw
+                    it in the green/brown bin" this is a common rule to remember what can go in the
+                    organic waste bin.Always verify the specific rules for your area to ensure you
+                    are disposing of organic waste correctly.</p>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                            class="btn  bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+        <dialog id="glassModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="text-xl font-bold text-[#7E60BF] underline underline-offset-8">Green
+                    bin</h3>
+                <div class="flex justify-center items-center my-4">
+                    <img src="images/green_bin.png" class="w-1/2 rounded-lg shadow-2xl" />
+                </div>
+                <p class="p-4 text-white bg-[#E4B1F0] font-semibold rounded-lg">Glass waste goes in
+                    glass waste bins, which are usually green in color. However, the exact color may
+                    vary by location and business. </p>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                            class="btn  bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+        <dialog id="electronicModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="text-xl font-bold text-[#7E60BF] underline underline-offset-8">Recycling
+                    center</h3>
+                <div class="flex justify-center items-center my-4">
+                    <img src="images/e-waste.jpeg" class="w-1/2 rounded-lg shadow-2xl" />
+                </div>
+                <p class="p-4 text-white bg-[#E4B1F0] font-semibold rounded-lg">E-waste does not go
+                    in your regular rubbish or recycling bin. You should take it to a designated
+                    collection point, such as a recycling center, electronics retailer, or special
+                    recycling bin </p>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                            class="btn  bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+        <dialog id="textileModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="text-xl font-bold text-[#7E60BF] underline underline-offset-8">Recycling
+                    points or Charity</h3>
+                <div class="flex justify-center items-center my-4">
+                    <img src="images/donation.jpeg" class="w-1/2 rounded-lg shadow-2xl" />
+                </div>
+                <p class="p-4 text-white bg-[#E4B1F0] font-semibold rounded-lg">Do not put textiles
+                    in your regular recycling bin: Most recycling programs cannot process
+                    textiles.Before discarding clothes, consider donating them to charities if they
+                    are still in good condition. </p>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                            class="btn  bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+        <dialog id="medicalModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="text-xl font-bold text-[#7E60BF] underline underline-offset-8">Yellow or
+                    orange bin</h3>
+                <div class="flex justify-center items-center my-4">
+                    <img src="images/yellow_bin.jpeg" class="w-1/2 rounded-lg shadow-2xl" />
+                </div>
+                <p class="p-4 text-white bg-[#E4B1F0] font-semibold rounded-lg">Medical waste should
+                    go into yellow or orange bins, depending on whether it's contaminated with
+                    bodily fluids or chemicals. </p>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                            class="btn  bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+        <dialog id="woodModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="text-xl font-bold text-[#7E60BF] underline underline-offset-8">Gren bin
+                    or recycling center</h3>
+                <div class="flex justify-center items-center my-4">
+                    <img src="images/green_bin.png" class="w-1/2 rounded-lg shadow-2xl" />
+                </div>
+                <p class="p-4 text-white bg-[#E4B1F0] font-semibold rounded-lg">Untreated wood waste
+                    can go in a green bin for food and garden waste. However, treated wood should go
+                    in wood recling center </p>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                            class="btn  bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+        <dialog id="paperModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="text-xl font-bold text-[#7E60BF] underline underline-offset-8">Recycling
+                    bin</h3>
+                <div class="flex justify-center items-center my-4">
+                    <img src="images/blue_bin.jpg" class="w-1/2 rounded-lg shadow-2xl" />
+                </div>
+                <p class="p-4 text-white bg-[#E4B1F0] font-semibold rounded-lg">Most paper products,
+                    including newspapers, magazines, cardboard, envelopes, and office paper, can be
+                    recycled and should be placed in the designated recycling container.Check your
+                    local recycling rules to ensure you're disposing of paper correctly. </p>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                            class="btn  bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+        <dialog id="shoesModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="text-xl font-bold text-[#7E60BF] underline underline-offset-8">Recycling
+                    bin or Recycling
+                    center</h3>
+                <div class="flex justify-center items-center my-4">
+                    <img src="images/blue_bin.jpg" class="w-1/2 rounded-lg shadow-2xl" />
+                </div>
+                <p class="p-4 text-white bg-[#E4B1F0] font-semibold rounded-lg">Shoes can go to a
+                    shoe recycling bin, household waste recycling center, or textile bank. You can
+                    also drop off shoes at a designated collection location</p>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                            class="btn  bg-white border-[#E4B1F0] border-2 text-[#E4B1F0]">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+    </div>
+    </main>
+    <footer class="footer footer-center bg-[#433878] text-primary-content p-10">
+        <aside>
+          <p class="font-bold">
+            Oitijya Islam Auvro
+          </p>
+          <ul class="list-disc marker:text-[#E4B1F0]">
+            <li><span class="font-semibold text-[#E4B1F0]">Gmail:</span> oitijya2002@gmail.com</li>
+            <li><span class="font-semibold text-[#E4B1F0]">Github:</span> github.com/AuvroIslam</li>
+
+          </ul>
+          <p class="mt-2">Copyright © 2025- All right reserved</p>
+        </aside>
+        <nav>
+          <div class="grid grid-flow-col gap-4">
+            <a href="mailto:oitijya2002@gmail.com">
+              <img src="images/gmail.png" class="w-6 h-6" alt="">
+            </a>
+            <a href="https://github.com/AuvroIslam">
+                <img src="images/github.png" class="w-6 h-6" alt="">
+              </a>
+              <a href="https://www.facebook.com/share/1WXhPLRHKo/">
+                <img src="images/facebook.png" class="w-6 h-6" alt="">
+              </a>
+          </div>
+        </nav>
+      </footer>
+      <script>
+        function toggleContent() {
+            const mainContent = document.getElementById("mainContent");
+            const wasteRecognizer = document.getElementById("wasteRecognizer");
+            const button = document.getElementById("toggleButton");
+    
+            if (wasteRecognizer.classList.contains("hidden")) {
+                // Show Waste Recognizer, Hide Main Content, Change Button to Home
+                mainContent.classList.add("hidden");
+                wasteRecognizer.classList.remove("hidden");
+                button.textContent = "Home";
+            } else {
+                // Show Main Content, Hide Waste Recognizer, Change Button to Try the Model
+                mainContent.classList.remove("hidden");
+                wasteRecognizer.classList.add("hidden");
+                button.textContent = "Try the Model";
+            }
+        }
+    
+        document.getElementById("toggleButton").addEventListener("click", toggleContent);
+    </script>
+        <script type="module">
+            import { Client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
+    
+            async function loaded(reader) {  
+                const app = await Client.connect("Auvro/WasteRecognizer");
+                const imageBlob = await fetch(reader.result).then(res => res.blob());
+                document.getElementById('loadingSpinner').classList.remove('hidden');
+                document.getElementById('placeholder').classList.add('hidden');
+
+    
+                try {
+                    const response = await app.predict("/predict", { image: imageBlob });
+                    const label = response['data'][0]['label'];
+                    results.innerHTML = `
+                        <div class='mt-4'>
+                            <img src="${reader.result}" class='w-64 h-64 object-cover rounded-lg shadow-md mx-auto'>
+                            <p class='mt-2 text-lg font-semibold text-[#7E60BF]'>${label}</p>
+                            <button onclick="${label.split(" ")[0].toLowerCase()+"Modal"}.showModal()" class="btn bg-white border-[#E4B1F0] border-2 text-[#E4B1F0] my-2">More Info</button>
+                        
+                        </div>
+                    `;
+                    console.log(label.split(" ")[0].toLowerCase()+"Modal");
+                } catch (error) {
+                    console.error("Error during prediction:", error);
+                    results.innerHTML = "<p class='text-red-500 mt-2'>Something went wrong with the prediction.</p>";
+                }
+                finally{
+                    document.getElementById('loadingSpinner').classList.add('hidden');
+                document.getElementById('placeholder').classList.remove('hidden');
+                }
+            }
+    
+            function read() {
+                const reader = new FileReader();
+                reader.addEventListener('load', () => loaded(reader));
+                reader.readAsDataURL(photo.files[0]);
+            }
+    
+            document.getElementById('photo').addEventListener('input', read);
+        </script>
+</body>
+
+</html>
+
