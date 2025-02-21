@@ -35,7 +35,7 @@ The model is trained to classify waste into the following categories:
 
 ## 🚀 Live Demo
 Experience the model in action:
-- **[Live Website](https://auvroislamgithub.io/wasteRecognizer/)**
+- **[Live Website](https://auvroislam.github.io/wasteRecognizer/)**
 - **[Hugging Face Space](https://huggingface.co/spaces/Auvro/WasteRecognizer)**
 
 ## 📊 Model Performance
