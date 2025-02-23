@@ -1,9 +1,9 @@
 # 🌍 Waste Recognition Model for Environmental Sustainability
 
-## 📌 Overview
+##  Overview
 The **Waste Recognition Model** is a deep-learning-based solution designed to classify various types of waste materials with high accuracy. By integrating AI-powered waste classification, this project aims to enhance waste management efficiency, reduce environmental pollution, and promote sustainable waste disposal practices.
 
-## 🎯 Key Features
+##  Key Features
 - **Accurate Waste Classification**: Identifies waste materials across multiple categories.
 - **Disposal Recommendations**: Suggests proper disposal methods to minimize environmental impact.
 - **Real-Time Processing**: Provides quick and efficient waste recognition for seamless integration into waste management systems.
@@ -11,7 +11,7 @@ The **Waste Recognition Model** is a deep-learning-based solution designed to cl
 - **Versatile Deployment**: Can be used in homes, offices, and industrial waste management systems.
 - **Environmental Impact**: Reduces contamination and promotes sustainable waste disposal.
 
-## 🏷️ Waste Categories
+##  Waste Categories
 The model is trained to classify waste into the following categories:
 1. **Plastic Waste** - Bottles, wrappers, straws, bags.
 2. **Metal Waste** - Aluminum, copper, iron, steel.
@@ -24,24 +24,24 @@ The model is trained to classify waste into the following categories:
 9. **Paper Waste** - Newspapers, magazines, cardboard.
 10. **Shoes Waste** - Footwear and related items.
 
-## ⚙️ Technologies Used
-- **Python** 🐍
-- **Fastai** 🏃‍
-- **Gradio** 🎧
-- **Hugging Face** 🤗
-- **HTML/CSS/JavaScript** 🖥️
-- **Tailwind CSS** 🎭
-- **DaisyUI** 🛰️
+##  Technologies Used
+- **Python** 
+- **Fastai** 
+- **Gradio** 
+- **Hugging Face** 
+- **HTML/CSS/JavaScript** 
+- **Tailwind CSS** 
+- **DaisyUI** 
 
 ## 🚀 Live Demo
 Experience the model in action:
 - **[Live Website](https://auvroislam.github.io/wasteRecognizer/)**
 - **[Hugging Face Space](https://huggingface.co/spaces/Auvro/WasteRecognizer)**
 
-## 🖼️ Hugging Face Model Preview
+##  Hugging Face Model Preview
 <img src="app/gradio.png" width="800" height="400">
 
-## 📊 Model Performance
+##  Model Performance
 The model demonstrates high accuracy in waste classification with:
 - **Real-time waste identification**
 - **Appropriate bin recommendations**
@@ -56,24 +56,24 @@ epoch	train_loss	valid_loss	error_rate	accuracy	time
 0	0.491925	0.258303	0.073665	0.926335	03:01
 ```
 
-## 📝 Data Preparation
+##  Data Preparation
 - **Dataset Collection**: Waste images are gathered from multiple sources, ensuring diverse and well-distributed data.
 - **Preprocessing**: Images undergo resizing, normalization, and augmentation to enhance model generalization.
 - **Labeling**: Data is labeled into predefined categories.
 - **Splitting**: The dataset is divided into training, validation, and testing sets for model evaluation.
 
-## 🎮 Model Training
+##  Model Training
 - **Architecture**: The model is built using **Fastai** with a **ResNet34** backbone for transfer learning.
 - **Optimization**: Fine-tuned using techniques such as **learning rate finder** and **gradual unfreezing**.
 - **Training**: The model undergoes multiple epochs of training to minimize loss and improve accuracy.
 - **Evaluation Metrics**: Accuracy, loss, and confusion matrix are used to assess performance.
 
-## 🔍 Inference
+##  Inference
 - **Model Deployment**: The trained model is deployed on **Gradio** and **Hugging Face** for easy accessibility.
 - **User Interaction**: Users upload waste images, and the model predicts the waste category and provides disposal guidance.
 - **Real-Time Testing**: The inference pipeline processes new images with minimal latency, making it efficient for practical applications.
 
-## 🗒️ Project Structure
+##  Project Structure
 ```
 WASTE-RECOGNIZER/
 ├── app/
@@ -105,7 +105,7 @@ WASTE-RECOGNIZER/
 └── requirements.txt         # Dependencies
 ```
 
-## 🔧 Setup Instructions
+##  Setup Instructions
 ### 1️⃣ Clone the Repository
 ```bash
 git clone https://github.com/AuvroIslam/wasteRecognizer.git
@@ -130,19 +130,19 @@ jupyter notebook
 ```
 Open and run `DataPrep,dataTraining,Inference.ipynb` to train and test the model.
 
-## 💡 Usage
+##  Usage
 - Upload an image of waste material.
 - The model predicts the waste category.
 - It provides disposal recommendations.
 
-## 🔍 Testing
+##  Testing
 - Use images from `test_images/` to validate model performance.
 - Run inference using `DataPrep,dataTraining,Inference.ipynb` for real-world evaluation.
 
-## 📚 License
+##  License
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
 
-## ⚙️ Contributions
+##  Contributions
 We welcome contributions! Feel free to fork the repository and submit a pull request.
 
 ## 📩 Contact
