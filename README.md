@@ -154,8 +154,10 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 ##  Contributions
 We welcome contributions! Feel free to fork the repository and submit a pull request.
 
-## 📩 Contact
-For inquiries or collaborations:
-- **GitHub**: [github.com/AuvroIslam](https://github.com/AuvroIslam)
-- **Email**: oitijya2002@gmail.com
+## Contact for More Details
+
+- 📧 Email: [oitijya2002@gmail.com](mailto:oitijya2002@gmail.com)  
+- 🔗 LinkedIn: [Oitijya Islam Auvro](https://linkedin.com/in/oitijya-islam-auvro-a252a5325)  
+- 💻 GitHub: [AuvroIslam](https://github.com/AuvroIslam)  
+
 
