@@ -37,6 +37,15 @@ The model is trained to classify waste into the following categories:
 Experience the model in action:
 - **[Live Website](https://auvroislam.github.io/wasteRecognizer/)**
 - **[Hugging Face Space](https://huggingface.co/spaces/Auvro/WasteRecognizer)**
+- 
+## 🖼️ Preview
+
+Screenshots of the website 
+<p float="left">
+  <img src="Preview/ss1.png" width="500" height="250"/>
+  <img src="Preview/ss2.png" width="500" height="250" />
+  <img src="Preview/ss3.png" width="500" height="250" />
+</p>
 
 ##  Hugging Face Model Preview
 <img src="app/gradio.png" width="800" height="400">
